@@ -49,6 +49,18 @@ lexem_t alex_nextLexem( void ) {
       return c==EOF ? EOFILE : OTHER; 
     } else if( c == '/' ) {
       /* moze byc komentarz */
+        int cp = c;
+        c = fgetc(ci);
+        if (c == '*') {
+            while (cp != '*' && c != '/' && c != EOF) {
+                cp = c;
+                c = fgetc(ci);
+            }
+        }
+        else if (c == '/') {
+            while (c != '\n' && c != EOF)
+                c = fgetc(ci);
+        }
                 } if( isdigit( c ) || c == '.' ) {
       /* liczba */
                 } else if(c==10){
