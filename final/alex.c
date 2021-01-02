@@ -48,10 +48,11 @@ lexem_t alex_nextLexem( void ) {
          i \\ w napisie 
       */
       int cp = c;
-                        while( (c= fgetc(ci)) != EOF && c != '"' && cp == '\\' ) {
+      c=fgetc(ci);
+                        while(c!= EOF && c != '"') {
                                 cp = c;
+				c = fgetc(ci);
       }
-	ungetc(c, ci);
       return c==EOF ? EOFILE : OTHER; 
     }
     else if( c == '/' ) {
