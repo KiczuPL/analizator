@@ -6,10 +6,16 @@
 
 int main (int argc, char **argv){
 	char *inpname;
-	if (argc>1){
-		inpname = argv[1];
-	} else return 1;
-	analizatorSkladni(inpname);
+	int i;
+	for (i=0; i<argc-1; i++){
+		inpname = argv[i+1];
+		analizatorSkladni(inpname);
+		printf("------------------- \n");
+		printf("Funkcje w pliku %s: \n", inpname);
+		store_print();
+		store_clear();
+		printf("------------------ \n");
+	}
 	return 0;
 }
 	

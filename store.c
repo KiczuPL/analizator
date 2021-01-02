@@ -28,7 +28,7 @@ void store_add_def (char* funame,int ln, char* inpname){
 		def[l][0]+=1;
 		def[l][def[l][0]]=ln;
 	}
-	printf("Nowy store_add_def dziala \n %s %d %s\n", funkcje[l], def[l][def[l][0]], inpname);
+	//printf("Nowy store_add_def dziala \n %s %d %s\n", funkcje[l], def[l][def[l][0]], inpname);
 }
 void store_add_proto (char* funame, int ln, char* inpname){
 	int i;
@@ -51,7 +51,7 @@ void store_add_proto (char* funame, int ln, char* inpname){
 		proto[l][0]+=1;
 		proto[l][proto[l][0]]=ln;
 	}
-	printf("Nowy store_add_proto dziala \n %s %d %s \n", funkcje[l],proto[l][proto[l][0]] , inpname);
+	//printf("Nowy store_add_proto dziala \n %s %d %s \n", funkcje[l],proto[l][proto[l][0]] , inpname);
 }
 void store_add_call (char* funame, int ln, char* inpname){
 	int i;
@@ -74,26 +74,36 @@ void store_add_call (char* funame, int ln, char* inpname){
 		call[l][0]+=1;
 		call[l][call[l][0]]=ln;
 	}
-	printf("Nowy store_add_call dziala \n %s %d %s \n", funkcje[l], call[l][call[l][0]], inpname);
+	//printf("Nowy store_add_call dziala \n %s %d %s \n", funkcje[l], call[l][call[l][0]], inpname);
 }
 void store_print(){
 	int i;
 	int l;
-	printf("-------------------------------------\n");
 	for(i=0;i<fn;i++){
-		printf("Funkcja %s: \n", funkcje[i]);
+		printf("\nFunkcja %s: \n", funkcje[i]);
 		printf("Definicje tej funkcji:\n");
+		if (def[i][0]==0) printf("Brak\n");
 		for(l=1; l<=def[i][0]; l++){
 			printf("%d\n", def[i][l]);
 		}
 		printf("Prototypy tej funkcji: \n");
+		if (proto[i][0]==0) printf("Brak\n");
 		for(l=1; l<=proto[i][0]; l++){
 			printf("%d\n", proto[i][l]);
 		}
 		printf("Wezwania tej funkcji: \n");
+		if (call[i][0]==0) printf("Brak\n");
 		for(l=1; l<=call[i][0]; l++){
 			printf("%d\n", call[i][l]);
 		}
 	}
-	printf("----------------------------------\n");
+}
+void store_clear(){
+	int i;
+	for(i=0; i<=fn; i++){
+		def[i][0]=0;
+		proto[i][0]=0;
+		call[i][0]=0;
+	}
+	fn=0;
 }
