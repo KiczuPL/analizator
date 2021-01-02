@@ -15,7 +15,7 @@ void    alex_init4file( FILE *in ) {
 lexem_t alex_nextLexem( void ) {
   int c;
   while( (c= fgetc(ci)) != EOF ) {
-//	  	  printf("Znak to %c \n", c);
+	  //	  printf("Znak to %c \n", c);
     //if( isspace( c ) )
     if(c==32)
                         return OTHER;
@@ -36,7 +36,7 @@ lexem_t alex_nextLexem( void ) {
     	int i= 1;
     	ident[0] = c;
     	while( isalnum( c= fgetc(ci) ) || c=='_' ){
-//	     printf("Znak to %c\n", c);
+	    // printf("Znak to %c\n", c);
         	ident[i++] = c; }
       		ungetc( c, ci);
                 ident[i] = '\0';
@@ -54,6 +54,15 @@ lexem_t alex_nextLexem( void ) {
 				c = fgetc(ci);
       }
       return c==EOF ? EOFILE : OTHER; 
+    }
+    else if( c == 39){
+	    int cp = c;
+	    c= fgetc(ci);
+	    	while(c!=EOF && c != 39){
+			cp = c;
+			c = fgetc(ci);
+		}
+		return c==EOF? EOFILE : OTHER;
     }
     else if( c == '/' ) {
       /* moze byc komentarz */

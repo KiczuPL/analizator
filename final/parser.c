@@ -27,6 +27,9 @@ analizatorSkladni (char *inpname)
     switch (lex) {
 	    case KEY:{
 		lexem_t nlex = alex_nextLexem ();
+		while (nlex == OTHER){
+			nlex = alex_nextLexem();
+		}
 		if(nlex == OPEPAR){
 		put_on_fun_stack(2, "KEY");
 		     }
