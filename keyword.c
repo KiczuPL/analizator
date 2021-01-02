@@ -3,13 +3,11 @@
 #include <stdio.h>
 #include <string.h>
 lexem_t isKeyword(char* ident){
-	//printf("Keyword bada: %s\n", ident);
-	if(strcmp(ident, "printf")==0 || strcmp(ident, "getc")==0 || strcmp(ident, "int")==0
-			|| strcmp(ident, "include")==0){ 
-	//	printf("Keyword ---- ignore\n");
-		return OTHER;
-	} else {
-	//	printf("%s to identyfikator \n", ident);
-		return IDENT;
+	char keyword [6][10] = {"printf", "getc", "int", "include", "if", "while"};
+	int i = 0;
+	for (i=0; i<5; i++){
+		if(strcmp(keyword[i], ident) == 0)
+			return OTHER;
 	}
+	return IDENT;
 }
