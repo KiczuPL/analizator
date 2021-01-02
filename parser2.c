@@ -51,8 +51,10 @@ analizatorSkladni (char *inpname)
                                                 // jeśli tak, to właśnie wczytany nawias jest domknięciem nawiasu otwartego
                                                 // za identyfikatorem znajdującym się na wierzchołku stosu
           lexem_t nlex = alex_nextLexem ();     // bierzemy nast leksem
-          if (nlex == OPEBRA)   // nast. leksem to klamra a więc mamy do czynienia z def. funkcji
+          if (nlex == OPEBRA){   // nast. leksem to klamra a więc mamy do czynienia z def. funkcji
+	    nbra+=1;
             store_add_def (get_from_fun_stack (), alex_getLN (), inpname);
+	  }
           else if (nbra == 0)   // nast. leksem to nie { i jesteśmy poza blokami - to musi być prototyp
             store_add_proto (get_from_fun_stack (), alex_getLN (), inpname);
           else                  // nast. leksem to nie { i jesteśmy wewnątrz bloku - to zapewne wywołanie
@@ -61,11 +63,13 @@ analizatorSkladni (char *inpname)
         npar--;
       }
       break;
-    case OPEBRA:
+    case OPEBRA:{
       nbra++;
+		}
       break;
-    case CLOBRA:
+    case CLOBRA:{
       nbra--;
+		}
       break;
     case ERROR:{
         fprintf (stderr, "\nBUUUUUUUUUUUUUUUUUUUUUU!\n"
