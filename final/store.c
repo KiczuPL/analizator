@@ -27,7 +27,7 @@ void print_list(list_t *list) {
   list_t *tmp = list;
   while (tmp != NULL) {
 
-    printf("%d \n", tmp->x);
+    printf("%d\n", tmp->x);
     tmp = tmp->next;
   }
 }
@@ -77,10 +77,9 @@ void store_add(char *funame, int ln, char *inpname, char mode) {
       tmp = tmp->next;
     }
 
-    if (mode == 'd') { // Dodanie pozycji
+    if (mode == 'd') // Dodanie pozycji
       tmp->def = list_add(tmp->def, ln);
-      printf("chyj\n");
-    } else if (mode == 'p')
+      else if (mode == 'p')
       tmp->proto = list_add(tmp->proto, ln);
     else if (mode == 'c')
       tmp->call = list_add(tmp->call, ln);
