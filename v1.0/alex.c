@@ -15,7 +15,7 @@ void    alex_init4file( FILE *in ) {
 lexem_t alex_nextLexem( void ) {
   int c;
   while( (c= fgetc(ci)) != EOF ) {
-     printf("Znak to %c \n", c);  /*Linia, ktora pomagala przy szukaniu bledow */
+    /* printf("Znak to %c \n", c);  Linia, ktora pomagala przy szukaniu bledow */
     /* Obsługa spacji */
     if(c==32)
                         return OTHER;
@@ -33,7 +33,7 @@ lexem_t alex_nextLexem( void ) {
     		ident[0] = c;
 		/* Podkreslniki rowniez moga byc czescia nazwy funkcji*/
     			while( isalnum( c= fgetc(ci) ) || c=='_' ){
-	    			 printf("Znak to %c\n", c);/*	Linia, ktora pomagala przy szukaniu bledow */
+	    			/* printf("Znak to %c\n", c);	Linia, ktora pomagala przy szukaniu bledow */
         			ident[i++] = c; }
       				ungetc( c, ci);
                 		ident[i] = '\0';
@@ -78,8 +78,10 @@ lexem_t alex_nextLexem( void ) {
 		    }
                 }
     		else if (c=='/') {
-		   	 while (c!= '\n' && c!=EOF)
+		   	 while (c!= '\n' && c!=EOF){
 			    c=fgetc(ci);
+			 }
+			 if (c==10 || c==13) ln+=1;
 	    }
 		return c==EOF? EOFILE : OTHER;
     }
