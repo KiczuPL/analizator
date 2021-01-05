@@ -79,6 +79,9 @@ analizatorSkladni (char *inpname)
                                                 // jeśli tak, to właśnie wczytany nawias jest domknięciem nawiasu otwartego
                                                 // za identyfikatorem znajdującym się na wierzchołku stosu
           lexem_t nlex = alex_nextLexem ();     // bierzemy nast leksem
+	  while(nlex == OTHER){
+		  nlex = alex_nextLexem ();
+	  }
           if (nlex == OPEBRA){   // nast. leksem to klamra a więc mamy do czynienia z def. funkcji
 	    nbra+=1;
             store_add_def (get_from_fun_stack (), alex_getLN (), inpname);
