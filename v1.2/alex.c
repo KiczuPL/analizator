@@ -102,7 +102,7 @@ char *  alex_ident( void ) {
    return ident;
 }
 
-int     alex_getLN() {
+int     alex_getLN( void ) {
         return lnn;
 }
 

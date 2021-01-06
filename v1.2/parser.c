@@ -14,6 +14,7 @@ analizatorSkladni (char *inpname)
   FILE *in = fopen (inpname, "r");
   if(in==NULL) {
 	  fprintf( stderr, "Analizator składni: błąd: jeden z plików podanych jako argument nie istnieje: %s \n", inpname);
+    store_clear();
 	  exit(1);
   }
 
@@ -109,6 +110,7 @@ analizatorSkladni (char *inpname)
         fprintf (stderr, "\nBUUUUUUUUUUUUUUUUUUUUUU!\n"
                  "W pliku %s (linia %d) są błędy składni.\n"
                  "Kończę!\n\n", inpname, alex_getLN ());
+        store_clear();
         exit (1);               // to nie jest najlepsze, ale jest proste ;-)
       }
       break;

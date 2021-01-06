@@ -1,8 +1,8 @@
 #include "fun_stack.h"
 #include <string.h>
 #include <stdlib.h>
-static stack_t* stack =NULL;
-int top_of_funstack(){
+static stack_t* stack = NULL;
+int top_of_funstack(void){
 	return stack->npar;
 }
 void put_on_fun_stack(int par_level, char*funame){
@@ -28,7 +28,7 @@ void put_on_fun_stack(int par_level, char*funame){
 		}
 	}
 }
-char* get_from_fun_stack() {
+char* get_from_fun_stack(void) {
 	char*name = NULL;
 	if(stack != NULL){
 		name = malloc(sizeof(stack->iname) * (strlen(stack->iname)+1));

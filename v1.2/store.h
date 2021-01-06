@@ -30,6 +30,6 @@ void store_add(char *funame, int ln, char *inpname, char mode, int ln2);
 void store_add_def(char *funame, int ln, char *inpname, int ln2);
 void store_add_proto(char *funame, int ln, char *inpname);
 void store_add_call(char *funame, int ln, char *inpname);
-void store_print();
-void store_clear();
+void store_print( void );
+void store_clear( void );
 #endif
