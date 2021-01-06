@@ -12,7 +12,7 @@ int main(int argc, char **argv) {
     analizatorSkladni(inpname);
   }
   printf("-----------------------\n");
-  printf("Funkcje w podanych plikach %s: \n", inpname);
+  printf("Funkcje w podanych plikach: \n");
   store_print();
   printf("-----------------------\n");
   store_clear();
