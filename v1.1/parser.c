@@ -18,7 +18,7 @@ analizatorSkladni (char *inpname)
 
   int nbra = 0;   // bilans nawiasów klamrowych {}
   int npar = 0;   // bilans nawiasów zwykłych ()
-
+  int lnn = 0;
   alex_init4file (in);          // ustaw analizator leksykalny, aby czytał in
   
   lexem_t lex;
@@ -42,6 +42,7 @@ analizatorSkladni (char *inpname)
 			}
 			if (nlex == OPEPAR){
 				npar++;
+				lnn = alex_getLN ();
 				put_on_fun_stack(npar, iname);
 			} else {
 				lex=nlex;
@@ -60,6 +61,7 @@ analizatorSkladni (char *inpname)
 	}
         if (nlex == OPEPAR) {   // nawias otwierający - to zapewne funkcja
           npar++;
+	  lnn = alex_getLN();
 	  put_on_fun_stack(npar, iname);       // odłóż na stos funkcji
                                                 // stos f. jest niezbędny, aby poprawnie obsłużyć sytuacje typu
                                                 // f1( 5, f2( a ), f3( b ) )
@@ -84,12 +86,12 @@ analizatorSkladni (char *inpname)
 	  }
           if (nlex == OPEBRA){   // nast. leksem to klamra a więc mamy do czynienia z def. funkcji
 	    nbra+=1;
-            store_add_def (get_from_fun_stack (), alex_getLN (), inpname);
+            store_add_def (get_from_fun_stack (), lnn , inpname);
 	  }
           else if (nbra == 0)   // nast. leksem to nie { i jesteśmy poza blokami - to musi być prototyp
-            store_add_proto (get_from_fun_stack (), alex_getLN (), inpname);
+            store_add_proto (get_from_fun_stack (), lnn, inpname);
           else                  // nast. leksem to nie { i jesteśmy wewnątrz bloku - to zapewne wywołanie
-            store_add_call (get_from_fun_stack (), alex_getLN (), inpname);
+            store_add_call (get_from_fun_stack (), lnn, inpname);
         }
         npar--;
       }
