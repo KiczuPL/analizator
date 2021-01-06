@@ -11,6 +11,10 @@ void include_find (char *inpname){
 	int l;
 	char *bibl= NULL;
 	FILE *in = fopen(inpname, "r");
+	if(in == NULL){
+		printf("Wypisywanie bibliotek: Nie można czytać pliku %s, sprawdz poprawnosc wpisanej nazwy \n", inpname);
+		exit(1);
+	}
 	while(fgets (buf, BUFSIZE, in) != NULL) {
 		if(strstr(buf, "#include") != NULL){
 			str = strtok(buf," ");
