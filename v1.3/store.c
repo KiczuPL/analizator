@@ -100,8 +100,6 @@ void file_clear(file_t *file) {
 void store_add(char *funame, int ln, char *inpname, char mode, int ln2) {
   int i;
   fun_t *tmp = fun;
-  // printf("Dodaję %c nr: %d z pliku %s funkcja: %s\n", mode, ln, inpname,
-  // funame);
   if (fun == NULL) { // Pierwsza dodana funkcja
     fun = malloc(sizeof(fun_t));
     fun->def = NULL;
@@ -156,7 +154,7 @@ void store_add_proto(char *funame, int ln, char *inpname) {
 void store_add_call(char *funame, int ln, char *inpname) {
   store_add(funame, ln, inpname, 'c', 0);
 }
-void store_print() {
+void store_print( void ) {
   fun_t *tmp = fun;
   while (tmp != NULL) {
     printf("\nFunkcja %s:\n", tmp->name);
@@ -180,7 +178,7 @@ void store_print() {
   }
 }
 
-void store_clear() {
+void store_clear( void ) {
   fun_t *tmp = fun;
   while (fun != NULL) {
     tmp = fun;

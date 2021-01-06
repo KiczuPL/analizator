@@ -21,8 +21,6 @@ int def_end(char *filename, int ln) {
   opbra++;
   while (opbra != clobra) {
     c = fgetc(in);
-    /*printf("%c", c);*/
-
     if (c == '"') {
       int cp = c;
       c = fgetc(in);
@@ -68,19 +66,17 @@ int def_end(char *filename, int ln) {
     }
 
     else if (c == '{') {
-      /*printf("KLAMRY: %d   %d", opbra, clobra);*/
+      // printf("KLAMRY: %d   %d", opbra, clobra);
       opbra++;
     } else if (c == '}') {
-      /*printf("KLAMRY: %d   %d", opbra, clobra);*/
+      // printf("KLAMRY: %d   %d", opbra, clobra);
       clobra++;
     } else if (c == '\n') {
       line++;
-     /* printf("%d.", line);*/
     } else if (c == EOF) {
       return -1;
     }
   }
   fclose(in);
-  /* printf("ZWRACA %d", line);*/
   return line;
 }
